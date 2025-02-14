@@ -1,0 +1,49 @@
+.cart-container {
+    margin-top: 30px;
+    padding: 20px;
+  }
+  
+  .cart-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .cart-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Image को crop करके सही दिखाएगा */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .cart-image:hover {
+    transform: scale(1.05); /* Hover effect */
+  }
+
+
+
+
+  .cart-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333; /* Dark Gray Color */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+  }
+  
+  .cart-title::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: #ff6600; /* Orange Line Under Title */
+    margin: 8px auto 0 auto;
+    border-radius: 2px;
+  }
+  
+  

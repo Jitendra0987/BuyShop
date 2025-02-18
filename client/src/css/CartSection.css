@@ -1,0 +1,124 @@
+/* प्रोडक्ट लिस्ट ग्रिड */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* थोड़ा कॉम्पैक्ट किया */
+  gap: 15px;
+  padding: 15px;
+  justify-content: center;
+}
+
+/* प्रोडक्ट कार्ड */
+.product-card {
+  width: 220px; /* पहले से थोड़ा छोटा किया */
+  height: 350px; /* ऊँचाई थोड़ी कम की */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* इमेज कंटेनर */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 160px; /* इमेज को थोड़ा छोटा किया */
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover .product-image {
+  transform: scale(1.05);
+}
+
+/* विशलिस्ट आइकन */
+.wishlist-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 1.3rem;
+  color: #ff6f61;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.wishlist-icon:hover {
+  color: #ff3b2e;
+}
+
+/* प्रोडक्ट जानकारी */
+.product-info {
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* टाइटल और प्राइस */
+.product-title-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.product-price {
+  font-size: 0.9rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+/* प्रोडक्ट विवरण */
+.product-description {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 5px 0;
+  height: 35px; /* लंबा डिस्क्रिप्शन दिखाने से बचने के लिए */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* रेटिंग */
+.product-rating {
+  color: #fbc02d;
+  font-size: 0.85rem;
+  display: flex;
+}
+
+.star-icon {
+  margin-right: 2px;
+}
+
+/* बटन */
+.add-to-cart {
+  width: 100%;
+  padding: 8px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+  background-color: #218838;
+}

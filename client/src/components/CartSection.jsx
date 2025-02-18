@@ -1,0 +1,80 @@
+
+import { useState, useEffect } from "react";
+import { FaRegHeart, FaStar } from "react-icons/fa";
+import { PiCurrencyInrThin } from "react-icons/pi";
+import BASE_URL from "../../configer.jsx"
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addtoCart } from "../../../client/src/pages/Redux/Cartslice.jsx"
+
+import "../css/CartSection.css";
+
+
+
+const CartSection = () => {
+
+  const [mydata, setMydata]= useState([]);
+  const dispatch = useDispatch();
+
+  
+  const loadData=async()=>{
+   const api=`${BASE_URL}/product/homeproductdisplay`;
+   try {
+       const response=await  axios.get(api);
+       setMydata(response.data);
+       console.log(response.data);
+   } catch (error) {
+       console.log(error);
+   }
+  }
+
+useEffect(()=>{
+   loadData();
+}, [])
+
+
+const ans=mydata.map((key)=>{
+  return(
+      <>
+    <div className="product-card">
+          <div className="image-container">
+<img src={`${BASE_URL}/${key.defaultImage}`} alt={key.name} className="product-image" />
+     <FaRegHeart className="wishlist-icon" />
+          </div>
+          <div className="product-info">
+              <div className="product-title-price">
+                  <h3 className="product-title">{key.name}</h3>
+                  <span className="product-price"> 
+                  <PiCurrencyInrThin />
+                      {key.price}</span>
+              </div>
+              <p className="product-description">{key.description}</p>
+              <div className="product-rating">
+                  {[...Array(key.ratings)].map((_, index) => (
+                      <FaStar key={index} className="star-icon" />
+                  ))}
+                 
+              </div>
+             
+              <button className="add-to-cart"
+  onClick={()=>{dispatch(addtoCart({id:key._id, name:key.name, brand:key.brand, price:key.price, description:key.description, category:key.category, subcategory:key.subcategory, images:key.images, defaultImage:key.defaultImage, ratings:key.ratings, status:key.status, qnty:1}))}}
+   
+              >Add to Cart</button>
+          </div>
+      </div>
+      </>
+  )
+})
+
+  return (
+    <>
+    <center>
+    <div className="product-list">
+                       {ans}
+        </div>
+     </center>
+    </>
+  );
+};
+
+export default CartSection;

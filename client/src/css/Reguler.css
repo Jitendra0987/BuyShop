@@ -1,0 +1,75 @@
+/* Container ke andar ka spacing */
+.container {
+    margin-top: 20px;
+}
+
+/* Bada box ke liye styling */
+.big-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Chhote boxes ke liye styling */
+.small-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e9ecef; /* Slightly darker gray */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Images ke liye responsive styling */
+.big-box img,
+.small-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Rounded corners */
+}
+
+/* Small screens par images center align hongi */
+@media (max-width: 768px) {
+    .big-box,
+    .small-box {
+        text-align: center;
+    }
+
+    .big-box img {
+        width: 100%;
+        height: auto;
+    }
+
+    .small-box img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+
+
+.cart-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333; /* Dark Gray Color */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+   
+  }
+  
+  .cart-title::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: #ff6600; /* Orange Line Under Title */
+    margin: 8px auto 0 auto;
+    border-radius: 2px;
+  }

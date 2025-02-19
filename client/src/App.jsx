@@ -8,6 +8,8 @@ import ProductInsert from "./pages/Admin/ProductInsert.jsx";
 import ProductUpdate from "./pages/Admin/ProductUpdate.jsx";
 import Cart from "./pages/Cart.jsx";
 import WishList from "./pages/wishList.jsx";
+import Ragistration from "./Ragistration.jsx";
+import Login from "./Login.jsx";
 
 
 
@@ -23,6 +25,9 @@ const App=()=>{
       <Route path="/product" element={<Product/>} />
       <Route path="/cart" element={<Cart/>} />
       <Route path="/wishlist" element={<WishList/>} />
+      <Route path="/ragistration" element={<Ragistration/>}/>
+      <Route path="/login" element={<Login/>}/>
+
 
 
       <Route path="admin" element={<Admin/>}>

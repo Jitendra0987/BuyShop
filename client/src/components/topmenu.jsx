@@ -57,8 +57,8 @@ const Topmenu=()=>{
 
       <Dropdown.Menu>
         <Dropdown.Item as={Link} to="admin">Admin</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+        <Dropdown.Item as={Link} to="ragistration">Ragistration</Dropdown.Item>
+        <Dropdown.Item as={Link} to="login">Login</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
       

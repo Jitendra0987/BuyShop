@@ -8,13 +8,18 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import cart from "../Images/cart.png";
-import wish from "../Images/Wishlist.png";;
+import wish from "../Images/Wishlist.png";
+import { useSelector } from 'react-redux';
 
 import "../css/Topmenu.css";
 import { Link } from 'react-router-dom';
 
 
 const Topmenu=()=>{
+
+  const productData=useSelector(state=>state.mycart.cart)
+  const prolength=productData.length;
+
   return(
     <>
 
@@ -57,7 +62,7 @@ const Topmenu=()=>{
       </Dropdown.Menu>
     </Dropdown>
       
-      <Link to="/cart">  <img src={cart} alt="" /> <sup>6</sup> </Link>
+      <Link to="/cart">  <img src={cart} alt="" /> <sup>{prolength}</sup> </Link>
       <Link to= "/wishList" > <img src={wish} alt="" />    </Link>
     </Container>
       </Navbar>

@@ -9,10 +9,17 @@ const cartSlice= createSlice({
 
     reducers:{
         addtoCart:(state, actions)=>{
-
+        const proData = state.cart.filter((key)=>key.id==actions.payload.id);
+        if(proData.length>=1)
+        {
+              alert("product aleredy added!!")
+        }
+        state.cart.push(actions.payload)
+        alert("product succesfulley added!!!!")
 
 
         }}
+        
     })
     
     

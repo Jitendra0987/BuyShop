@@ -16,7 +16,7 @@ const Login = () => {
 
      if (localStorage.getItem("username"))
      {
-        // navigate("/home");
+        navigate("/home");
      }
 
    }, [])

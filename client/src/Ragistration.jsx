@@ -16,7 +16,7 @@ const navigate= useNavigate();
 useEffect(()=>{
         if (localStorage.getItem("username"))
         {
-            // navigate("/home");
+            navigate("/home");
         }
 
 }, [])

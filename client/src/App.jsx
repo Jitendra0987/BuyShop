@@ -10,6 +10,7 @@ import Cart from "./pages/Cart.jsx";
 import WishList from "./pages/wishList.jsx";
 import Ragistration from "./Ragistration.jsx";
 import Login from "./Login.jsx";
+import CheckOut from "./pages/Admin/checkOut.jsx";
 
 
 
@@ -27,6 +28,7 @@ const App=()=>{
       <Route path="/wishlist" element={<WishList/>} />
       <Route path="/ragistration" element={<Ragistration/>}/>
       <Route path="/login" element={<Login/>}/>
+      <Route path="/checkout" element={<CheckOut/>}/>
 
 
 

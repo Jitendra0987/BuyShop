@@ -4,7 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import store from './pages/Redux/Store.jsx';
 import { Provider } from 'react-redux';
 
+import LoginContext from './LoginContext.jsx';
 createRoot(document.getElementById('root')).render( 
     <Provider store={store}>
+        <LoginContext>
         <App />
+        </LoginContext>
    </Provider> )

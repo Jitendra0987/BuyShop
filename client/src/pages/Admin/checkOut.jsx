@@ -1,0 +1,174 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import BASE_URL from "../../../configer.jsx";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import Table from 'react-bootstrap/Table';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+
+const CheckOut=()=>{
+    const [mydata, setMydata] = useState({});
+    const navigate= useNavigate();
+
+    const proData= useSelector(state=>state.mycart.cart);
+    // const dispatch= useDispatch();
+    
+  
+    
+  useEffect(()=>{
+    if (!localStorage.getItem("username"))
+    {
+    //   navigate("/userlogin");
+    }
+
+    loadData();
+}, [])
+
+
+
+    const loadData=async()=>{
+        const api=`${BASE_URL}/user/getuserdetail`;
+        const response = await axios.post(api, {id:localStorage.getItem("userid")});
+        console.log(response.data);
+        setMydata(response.data);
+      }
+
+
+      let totalAmount=0;
+      let myProImg="";
+      let myProList="";
+      const ans= proData.map((key)=>{
+          totalAmount+=key.price * key.qnty;
+          myProImg=`${BASE_URL}/${key.defaultImage}`;
+          myProList+=key.name+", ";
+        return(
+          <>
+          <tr>
+                 <td> 
+                 <img src={`${BASE_URL}/${key.defaultImage}`} style={{ width: 50, height: 50 }} alt="Uploaded File" />
+                 </td>   
+                  <td>{key.name} </td>
+                  <td> {key.brand} </td>
+                  <td> {key.price} </td>
+                 <td> {key.qnty}</td> 
+                  <td>{key.price * key.qnty} </td>
+      
+               </tr>
+          </>
+        )
+       })
+
+       const initPay = (data) => {
+        const options = {
+          key : "rzp_test_mF8cWr61AE74o9",
+          amount: data.amount,
+          currency: data.currency,
+          name: myProList,
+          description: "Test",
+          image:myProImg,
+          order_id: data.id,
+          handler: async (response) => {
+            try {
+              const verifyURL = "https://localhost:8000/api/payment/verify";
+              const {data} = await axios.post(verifyURL,response);
+            } catch(error) {
+              console.log(error);
+            }
+          },
+          theme: {
+            color: "#3399cc",
+          },
+        };
+        const rzp1 = new window.Razorpay(options);
+        rzp1.open();
+      };
+      
+
+
+       const handlePay = async () => {
+        try {
+          const orderURL = "http://localhost:8000/api/payment/orders";
+          const {data} = await axios.post(orderURL,{amount: totalAmount});
+          console.log(data);
+          initPay(data.data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+    return(
+        <>
+        
+        <h1 align="center">  Check out Page </h1>
+          <div style={{width:"700px", margin:"auto", display:"flex", justifyContent:"space-between"}}>
+          <Form style={{width:"400px"}}>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Customer Name</Form.Label>
+        <Form.Control type="text" value={mydata.name} style={{backgroundColor:"#f4eded"}} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Customer Contact no</Form.Label>
+        <Form.Control type="text" value={mydata.contact} style={{backgroundColor:"#f4eded"}} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email </Form.Label>
+        <Form.Control type="text" value={mydata.email} style={{backgroundColor:"#f4eded"}} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Shipping Address</Form.Label>
+        <Form.Control type="text" value={mydata.address} style={{backgroundColor:"#f4eded"}}/>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>City</Form.Label>
+        <Form.Control type="text" value={mydata.city} style={{backgroundColor:"#f4eded"}} />
+      </Form.Group>
+      </Form>
+      <div>
+
+        
+    <Table striped bordered hover style={{fontSize:"12px",marginLeft:"20px"}}>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Product Name</th>
+          <th>Brand</th>
+          <th>Price</th>
+          <th> Quantity </th>
+          <th> Total Amount</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+       {ans}
+       <tr>
+         <th colSpan="5"> Net Amount :  </th>
+         <th> {totalAmount} </th>
+       </tr>
+       <tr>
+         <th colSpan="6"> 
+
+         <Button variant="primary" type="submit" onClick={handlePay}>
+          Pay Now!
+      </Button>
+          
+
+            
+           </th>
+       </tr>
+
+     
+      </tbody>
+      </Table>
+        
+      </div>
+         
+         
+         </div>
+
+
+        </>
+    )
+}
+export default CheckOut;

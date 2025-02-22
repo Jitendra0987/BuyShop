@@ -53,7 +53,7 @@ const ans= proData.map((key)=>{
     </center>
     <div  style={{color:"green", textAlign:"right", paddingRight:"30px",fontSize:"20px"}}>       
        <Button variant="success" onClick={()=>{navigate("/checkout")}}> 
-       <FaMoneyCheck  /> Checkout </Button>
+       <FaMoneyCheck /> Checkout </Button>
       </div>
      <br /> <br />
           <Table striped bordered hover style={{fontSize:"12px"}}>
@@ -62,7 +62,6 @@ const ans= proData.map((key)=>{
           <th>#</th>
           <th>Product Name</th>
           <th>Brand</th>
-       
           <th>Description</th>
           <th>Price</th>
           <th> Quantity </th>
